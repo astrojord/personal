@@ -253,6 +253,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    width: 48px;
   }
 
   .desktop-icon {
@@ -265,11 +266,7 @@
     text-align: center;
   }
 
-  .desktop-icon svg {
-    width: 32px;
-    height: 32px;
-    image-rendering: pixelated;
-    filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.4));
+  .desktop-icon img {
     margin-bottom: 3px;
   }
 
