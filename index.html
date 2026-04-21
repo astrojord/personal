@@ -4,16 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>astrojord.dev</title>
+    <link rel="icon" type="image/x-icon" href="img/smiley.ico">
     <link rel="stylesheet" type="text/css" href="w95.css">
-    <link href=" https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css " rel="stylesheet">
   </head>
 
   <body>
     <!-- <script type="text/javascript" src="index.js"></script> -->
 
+    <div id="desktop-icons">
+      <div class="desktop-icon" onclick="openWindow('about-win')" tabindex="0">
+        <img src="img/about.ico" alt="about" width="32px">
+        <span>jordan.exe</span>
+      </div>
+      <div class="desktop-icon" onclick="openWindow('skills-win')" tabindex="0">
+        <img src="img/skills.ico" alt="skills" width="32px">
+        <span>skills.exe</span>
+      </div>
+      <div class="desktop-icon" onclick="openWindow('contact-win')" tabindex="0">
+        <img src="img/contact.ico" alt="contact" width="32px">
+        <span>contact.exe</span>
+      </div>
+      <div class="desktop-icon" onclick="openWindow('sites-win')" tabindex="0">
+        <img src="img/subdomains.ico" alt="links" width="32px">
+        <span>subdomains.exe</span>
+      </div>
+      <div class="desktop-icon" onclick="openWindow('sand-win')" tabindex="0">
+        <img src="img/game.ico" alt="sand game" width="32px">
+        <span>sand.exe</span>
+      </div>
+    </div>
+
     <div class="window" id="about-win" style="width:380px; top:60px; left:120px;">
       <div class="title-bar" data-win="about-win">
-        <svg class="title-bar-icon" viewBox="0 0 16 16"><rect x="1" y="2" width="10" height="12" fill="#fff" stroke="#000" stroke-width="0.5"/><rect x="1" y="2" width="10" height="3" fill="#000080"/><text x="3" y="5" fill="#fff" font-size="2.5" font-family="Arial">AH</text></svg>
+        <img src="img/about.ico" alt="about" width="16px">
         <span class="title-text">jordan.exe</span>
         <div class="title-buttons">
           <div class="win-btn" onclick="closeWindow('about-win')" style="font-weight:bold">✕</div>
@@ -27,12 +50,12 @@
       </div>
       <div class="window-content" style="height:260px">
         <div style="display:flex; gap:12px; margin-bottom:10px;">
-          <div class="profile-photo" style="float:none; flex-shrink:0;"> <img src="toad.png" alt="wizard toad" width="70px"> </div>
+          <div class="profile-photo" style="float:none; flex-shrink:0;"> <img src="img/toad.png" alt="wizard toad" width="70px"> </div>
           <div>
             <div style="font-size:16px; font-weight:bold; margin-bottom:2px;">Jordan Sheely</div>
             <div style="color:#444; margin-bottom:4px;">Full-Stack Developer</div>
             <div class="inset" style="padding:3px 6px; background:#fffff0; font-size:10px;">
-              <i class="fa fa-location-arrow"></i> Seattle, WA
+              <img src="img/gps.ico" alt="location" width="16px"> Seattle, WA
             </div>
           </div>
         </div>
@@ -63,14 +86,14 @@
 
     <div class="window" id="skills-win" style="width:320px; top:420px; left:60px;">
       <div class="title-bar" data-win="skills-win">
-        <svg class="title-bar-icon" viewBox="0 0 16 16"><rect x="1" y="4" width="14" height="9" rx="0.5" fill="#c0c0c0" stroke="#000" stroke-width="0.5"/><rect x="2" y="5" width="12" height="6" fill="#000080"/><rect x="3" y="6" width="2" height="4" fill="#00aa00"/><rect x="7" y="7" width="2" height="2" fill="#ffaa00"/><rect x="11" y="5.5" width="2" height="4" fill="#0088ff"/></svg>
+        <img src="img/skills.ico" alt="skills" width="16px">
         <span class="title-text">skills.exe</span>
         <div class="title-buttons">
           <div class="win-btn" onclick="closeWindow('skills-win')">✕</div>
         </div>
       </div>
       <div class="window-content" style="height:280px; overflow-y:auto;">
-        <div style="font-weight:bold; margin-bottom:6px;"><i class="fa fa-laptop"></i> Technical Skills</div>
+        <div style="font-weight:bold; margin-bottom:6px;"><img src="img/keyboard.ico" alt="keyboard" width="16px"> Technical Skills</div>
         <div style="display:flex; flex-wrap:wrap; gap:4px;">
           <div class="skill-bar-wrap">
             <div class="skill-label"><em>Python</em></div>
@@ -86,15 +109,15 @@
           </div>
           <div class="skill-bar-wrap">
             <div class="skill-label"><em>Relational DBs</em></div>
-            <div class="skill-bar">PostgreSQL, MySQL, SQL Server, SQLite</div>
+            <div class="skill-bar">PostgreSQL, MySQL, SQL Server, SQLite, InfluxDB</div>
           </div>
           <div class="skill-bar-wrap">
             <div class="skill-label"><em>Others</em></div>
-            <div class="skill-bar">R, MATLAB, Mathematica, Spark, Kafka, Rust</div>
+            <div class="skill-bar">R, MATLAB, Mathematica, Spark, Kafka, Rust, Telegraf, Grafana</div>
           </div>
         </div>
         <hr class="separator">
-        <div style="font-weight:bold; margin-bottom:6px;"><i class="fa fa-cog"></i> Tools & Platforms</div>
+        <div style="font-weight:bold; margin-bottom:6px;"><img src="img/tools.ico" alt="tools" width="16px"> Tools & Platforms</div>
         <div style="display:flex; flex-wrap:wrap; gap:4px;">
           <span class="raised skill-button">Git</span>
           <span class="raised skill-button">Docker</span>
@@ -108,7 +131,7 @@
 
     <div class="window" id="contact-win" style="width:320px; top:320px; left:300px;">
       <div class="title-bar" data-win="contact-win">
-        <svg class="title-bar-icon" viewBox="0 0 16 16"><rect x="1" y="4" width="14" height="9" fill="#fff" stroke="#000" stroke-width="0.5"/><polyline points="1,4 8,9 15,4" fill="none" stroke="#000080" stroke-width="0.8"/></svg>
+        <img src="img/contact.ico" alt="contact" width="16px">
         <span class="title-text">contact.exe</span>
         <div class="title-buttons">
           <div class="win-btn" onclick="closeWindow('contact-win')">✕</div>
@@ -117,13 +140,13 @@
       <div class="window-content" style="height:auto;">
         <div class="inset" style="background:#fff; padding:4px 0;">
           <a href="mailto:jbsheel@gmail.com" class="contact-link">
-            <span class="contact-link-icon"><i class="fa fa-envelope-o"></i></span> jbsheel@gmail.com
+            <img src="img/email.ico" alt="email" width="16px"> jbsheel@gmail.com
           </a>
           <a href="https://github.com/astrojord" target="_blank" class="contact-link">
-            <span class="contact-link-icon"><i class="fa fa-code"></i></span> github.com/astrojord
+            <img src="img/terminal.ico" alt="code" width="16px"> github.com/astrojord
           </a>
           <a href="https://linkedin.com/in/jordan-sheely" target="_blank" class="contact-link">
-            <span class="contact-link-icon"><i class="fa fa-briefcase"></i></span> linkedin.com/in/jordan-sheely
+            <img src="img/briefcase.ico" alt="briefcase" width="16px"> linkedin.com/in/jordan-sheely
           </a>
           <!-- <a href="https://read.cv/astrojord" target="_blank" class="contact-link">
             <span class="contact-link-icon">📄</span> read.cv/astrojord
@@ -134,17 +157,17 @@
 
     <div class="window" id="sites-win" style="width:260px; top:200px; left:460px;">
       <div class="title-bar" data-win="sites-win">
-        <svg class="title-bar-icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="#fff" stroke="#000" stroke-width="0.5"/><ellipse cx="8" cy="8" rx="3" ry="6.5" fill="none" stroke="#808080" stroke-width="0.8"/><line x1="1.5" y1="8" x2="14.5" y2="8" stroke="#808080" stroke-width="0.8"/><line x1="2.5" y1="5" x2="13.5" y2="5" stroke="#808080" stroke-width="0.5"/><line x1="2.5" y1="11" x2="13.5" y2="11" stroke="#808080" stroke-width="0.5"/></svg>
+        <img src="img/subdomains.ico" alt="links" width="16px">
         <span class="title-text">subdomains.exe</span>
         <div class="title-buttons">
           <div class="win-btn" onclick="closeWindow('sites-win')">✕</div>
         </div>
       </div>
       <div class="window-content" style="height:auto;">
-        <div style="font-weight:bold; margin-bottom:8px;"><i class="fa fa-search"></i> also hosted here...</div>
+        <div style="font-weight:bold; margin-bottom:8px;"><img src="img/smiley.ico" alt="smiley" width="16px"> also hosted here...</div>
         <div class="inset" style="background:#fff; padding:4px 0;">
           <a href="https://foundry.astrojord.dev" class="contact-link">
-            <span class="contact-link-icon"><i class="fa fa-link"></i></span> Foundry VTT
+            <img src="img/tack.ico" alt="tack" width="16px"> Foundry VTT
           </a>
         </div>
       </div>
@@ -152,7 +175,7 @@
 
     <div class="window" id="sand-win" style="width:364px; top:540px; left:500px;">
       <div class="title-bar" data-win="sand-win">
-        <svg class="title-bar-icon" viewBox="0 0 16 16"><rect x="2" y="8" width="12" height="7" fill="#c8a850" stroke="#000" stroke-width="0.5"/><polygon points="4,8 12,8 10,3 6,3" fill="#e0c060" stroke="#000" stroke-width="0.5"/></svg>
+        <img src="img/game.ico" alt="sand game" width="16px">
         <span class="title-text">sand.exe</span>
         <div class="title-buttons">
           <div class="win-btn" onclick="minimizeWindow('sand-win')">_</div>
@@ -259,6 +282,8 @@
         const colorGrid = new Uint8Array(COLS * ROWS);
         // fireLife: remaining life of each fire cell (1–40), also used for flicker color
         const fireLife = new Uint8Array(COLS * ROWS);
+        // velGrid: downward velocity per cell (1–8), enables gravity acceleration
+        const velGrid = new Uint8Array(COLS * ROWS);
         let currentType = SAND;
         let mouseDown = false;
         let mouseX = -1, mouseY = -1;
@@ -282,11 +307,13 @@
                 if (grid[i] !== WATER) {
                   grid[i] = FIRE;
                   fireLife[i] = 20 + Math.floor(Math.random() * 25);
+                  velGrid[i] = 0;
                 }
               } else {
                 if (grid[i] === EMPTY) {
                   grid[i] = currentType;
                   colorGrid[i] = Math.floor(Math.random() * 5);
+                  velGrid[i] = 1;
                 }
               }
             }
@@ -296,6 +323,10 @@
         function isBurnable(t) { return t !== EMPTY && t !== WATER && t !== FIRE; }
 
         function update() {
+          // Velocity caps: water stays fluid/slow, solids accelerate freely
+          const MAX_VEL_SOLID = 6;
+          const MAX_VEL_WATER = 2;
+
           // Process bottom to top for falling particles
           for (let r = ROWS - 2; r >= 0; r--) {
             const leftFirst = Math.random() < 0.5;
@@ -311,7 +342,8 @@
               // Water immediately extinguishes fire below and falls through
               if (t === WATER && belowT === FIRE) {
                 grid[idx(c, below)] = WATER; colorGrid[idx(c, below)] = colorGrid[i];
-                grid[i] = EMPTY; colorGrid[i] = 0;
+                velGrid[idx(c, below)] = velGrid[i];
+                grid[i] = EMPTY; colorGrid[i] = 0; velGrid[i] = 0;
                 fireLife[idx(c, below)] = 0;
                 continue;
               }
@@ -320,6 +352,7 @@
               if (belowT === FIRE && t !== WATER) {
                 grid[i] = FIRE;
                 fireLife[i] = 15 + Math.floor(Math.random() * 20);
+                velGrid[i] = 0;
                 continue;
               }
 
@@ -327,7 +360,8 @@
               if (t === WATER && belowT === SNOW) {
                 grid[idx(c, below)] = WATER;
                 colorGrid[idx(c, below)] = Math.floor(Math.random() * 5);
-                grid[i] = EMPTY; colorGrid[i] = 0;
+                velGrid[idx(c, below)] = velGrid[i];
+                grid[i] = EMPTY; colorGrid[i] = 0; velGrid[i] = 0;
                 continue;
               }
 
@@ -335,13 +369,44 @@
               if (t === SNOW && belowT === WATER) {
                 grid[i] = WATER;
                 colorGrid[i] = Math.floor(Math.random() * 5);
+                velGrid[i] = 1;
                 continue;
               }
 
-              if (belowT === EMPTY) {
-                grid[idx(c, below)] = t; colorGrid[idx(c, below)] = colorGrid[i];
+              // --- Gravity: step down by current velocity ---
+              const maxVel = (t === WATER) ? MAX_VEL_WATER : MAX_VEL_SOLID;
+              const vel = Math.max(1, velGrid[i] || 1);
+              const steps = Math.min(vel, ROWS - 1 - r);
+
+              let landedAt = r; // row the particle ends up in
+              for (let s = 1; s <= steps; s++) {
+                const tr = r + s;
+                const ti = idx(c, tr);
+                if (grid[ti] === EMPTY) {
+                  landedAt = tr;
+                } else {
+                  break;
+                }
+              }
+
+              if (landedAt > r) {
+                // Particle fell at least one cell — carry it down
+                const dest = idx(c, landedAt);
+                grid[dest] = t; colorGrid[dest] = colorGrid[i];
                 grid[i] = EMPTY; colorGrid[i] = 0;
+
+                // Accelerate if it traveled the full velocity (still in free-fall)
+                if (landedAt - r === steps) {
+                  velGrid[dest] = Math.min(vel + (Math.random() < 0.5 ? 1 : 0), maxVel);
+                } else {
+                  // Blocked before completing full step — reset velocity
+                  velGrid[dest] = 1;
+                }
+                velGrid[i] = 0;
               } else {
+                // Couldn't fall straight down — try diagonals (at row r+1)
+                velGrid[i] = 1; // reset: particle is resting or spreading
+
                 const dl = (Math.random() < 0.5) ? -1 : 1;
                 const tryDiag = (d) => {
                   const nc = c + d;
@@ -349,7 +414,8 @@
                   const di = idx(nc, below);
                   if (grid[di] === EMPTY) {
                     grid[di] = t; colorGrid[di] = colorGrid[i];
-                    grid[i] = EMPTY; colorGrid[i] = 0;
+                    velGrid[di] = 1;
+                    grid[i] = EMPTY; colorGrid[i] = 0; velGrid[i] = 0;
                     return true;
                   }
                   return false;
@@ -360,7 +426,8 @@
                   const nc = c + (Math.random() < 0.5 ? -1 : 1);
                   if (nc >= 0 && nc < COLS && grid[idx(nc, r)] === EMPTY) {
                     grid[idx(nc, r)] = t; colorGrid[idx(nc, r)] = colorGrid[i];
-                    grid[i] = EMPTY; colorGrid[i] = 0;
+                    velGrid[idx(nc, r)] = 1;
+                    grid[i] = EMPTY; colorGrid[i] = 0; velGrid[i] = 0;
                   }
                 }
               }
@@ -445,7 +512,7 @@
         }
 
         function loop() {
-          if (mouseDown && mouseX >= 0) spawnParticle(mouseX, mouseY, 3);
+          if (mouseDown && mouseX >= 0) spawnParticle(mouseX, mouseY, 2);
           update();
           render();
           requestAnimationFrame(loop);
@@ -488,7 +555,7 @@
         };
 
         window.clearSand = function() {
-          grid.fill(0); colorGrid.fill(0); fireLife.fill(0);
+          grid.fill(0); colorGrid.fill(0); fireLife.fill(0); velGrid.fill(0);
         };
 
         loop();
