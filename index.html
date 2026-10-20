@@ -178,8 +178,6 @@
         <img src="img/game.ico" alt="sand game" width="16px">
         <span class="title-text">sand.exe</span>
         <div class="title-buttons">
-          <div class="win-btn" onclick="minimizeWindow('sand-win')">_</div>
-          <div class="win-btn" onclick="maximizeWindow('sand-win')">□</div>
           <div class="win-btn" onclick="closeWindow('sand-win')">✕</div>
         </div>
       </div>
@@ -202,8 +200,6 @@
       // ===== WINDOW MANAGEMENT =====
       let zCounter = 100;
       let activeWin = null;
-      const minimized = {};
-      const originalSizes = {};
 
       // Matches the stacked-layout breakpoint in w95.css
       const MOBILE_MQ = window.matchMedia('(max-width: 880px), (max-height: 500px)');
@@ -212,7 +208,6 @@
         const win = document.getElementById(id);
         win.classList.add('visible');
         bringToFront(win);
-        minimized[id] = false;
         // In the stacked layout a reopened window may be off-screen
         if (scroll && MOBILE_MQ.matches) win.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -220,7 +215,6 @@
       function closeWindow(id) {
         const win = document.getElementById(id);
         win.classList.remove('visible');
-        minimized[id] = false;
       }
 
       function bringToFront(win) {
