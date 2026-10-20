@@ -195,7 +195,7 @@
         </div>
         <div class="raised" onclick="clearSand()" style="font-size:10px; padding:1px 6px; cursor:pointer; margin-left:4px;">Clear</div>
       </div>
-      <canvas id="sand-canvas" width="356" height="280" style="display:block; cursor:crosshair; image-rendering:pixelated;"></canvas>
+      <canvas id="sand-canvas" width="356" height="280" style="display:block; cursor:crosshair; image-rendering:pixelated; touch-action:none;"></canvas>
     </div>
 
     <script>
@@ -205,11 +205,16 @@
       const minimized = {};
       const originalSizes = {};
 
-      function openWindow(id) {
+      // Matches the stacked-layout breakpoint in w95.css
+      const MOBILE_MQ = window.matchMedia('(max-width: 880px), (max-height: 500px)');
+
+      function openWindow(id, scroll = true) {
         const win = document.getElementById(id);
         win.classList.add('visible');
         bringToFront(win);
         minimized[id] = false;
+        // In the stacked layout a reopened window may be off-screen
+        if (scroll && MOBILE_MQ.matches) win.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
       function closeWindow(id) {
@@ -227,7 +232,7 @@
       }
 
       // Click on window to bring to front
-      document.addEventListener('mousedown', (e) => {
+      document.addEventListener('pointerdown', (e) => {
         const win = e.target.closest('.window');
         if (win) bringToFront(win);
       });
@@ -235,7 +240,8 @@
       // ===== DRAG =====
       let dragging = null, dragOffX = 0, dragOffY = 0;
 
-      document.addEventListener('mousedown', (e) => {
+      document.addEventListener('pointerdown', (e) => {
+        if (MOBILE_MQ.matches) return; // windows are stacked, not draggable
         const titleBar = e.target.closest('.title-bar');
         if (!titleBar || e.target.classList.contains('win-btn')) return;
         const win = document.getElementById(titleBar.dataset.win);
@@ -247,13 +253,14 @@
         e.preventDefault();
       });
 
-      document.addEventListener('mousemove', (e) => {
+      document.addEventListener('pointermove', (e) => {
         if (!dragging) return;
         dragging.style.left = (e.clientX - dragOffX) + 'px';
         dragging.style.top = Math.max(0, e.clientY - dragOffY) + 'px';
       });
 
-      document.addEventListener('mouseup', () => { dragging = null; });
+      document.addEventListener('pointerup', () => { dragging = null; });
+      document.addEventListener('pointercancel', () => { dragging = null; });
 
 
 
@@ -520,25 +527,28 @@
 
         function getCell(e) {
           const rect = canvas.getBoundingClientRect();
+          // Canvas may be CSS-scaled (stacked layout), so map back to its pixel size
+          const sx = canvas.width / rect.width, sy = canvas.height / rect.height;
           return {
-            c: Math.floor((e.clientX - rect.left) / CELL),
-            r: Math.floor((e.clientY - rect.top) / CELL)
+            c: Math.floor((e.clientX - rect.left) * sx / CELL),
+            r: Math.floor((e.clientY - rect.top) * sy / CELL)
           };
         }
 
-        canvas.addEventListener('mousedown', e => {
+        canvas.addEventListener('pointerdown', e => {
           e.stopPropagation();
+          canvas.setPointerCapture(e.pointerId);
           mouseDown = true;
           const {c, r} = getCell(e);
           mouseX = c; mouseY = r;
         });
-        canvas.addEventListener('mousemove', e => {
+        canvas.addEventListener('pointermove', e => {
           if (!mouseDown) return;
           const {c, r} = getCell(e);
           mouseX = c; mouseY = r;
         });
-        canvas.addEventListener('mouseup', () => { mouseDown = false; });
-        canvas.addEventListener('mouseleave', () => { mouseDown = false; });
+        canvas.addEventListener('pointerup', () => { mouseDown = false; });
+        canvas.addEventListener('pointercancel', () => { mouseDown = false; });
 
         const MATERIAL_NAMES = ['Sand','Snow','Ash','Dirt','Water','Fire'];
 
@@ -563,11 +573,11 @@
 
       // Open default windows on load
       window.onload = () => {
-        openWindow('about-win');
-        openWindow('skills-win');
-        openWindow('contact-win');
-        openWindow('sites-win');
-        openWindow('sand-win');
+        openWindow('about-win', false);
+        openWindow('skills-win', false);
+        openWindow('contact-win', false);
+        openWindow('sites-win', false);
+        openWindow('sand-win', false);
       };
     </script>
   </body>

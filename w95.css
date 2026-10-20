@@ -65,6 +65,7 @@
     padding: 2px 2px 2px 4px;
     gap: 2px;
     cursor: move;
+    touch-action: none; /* let touch drags move windows instead of scrolling */
   }
 
   .window.active .title-bar { background: var(--title-active); }
@@ -284,4 +285,58 @@
     background: #000080;
     text-shadow: none;
     outline: 1px dotted #fff;
+  }
+
+  /* ===== MOBILE / SMALL SCREENS ===== */
+  /* Below this size the floating-window desktop doesn't fit, so windows
+     stack into a single scrolling column. Keep in sync with MOBILE_MQ in index.html. */
+  @media (max-width: 880px), (max-height: 500px) {
+    html, body {
+      height: auto;
+      min-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    body { padding-bottom: 12px; }
+
+    #desktop-icons {
+      position: relative;
+      top: auto; left: auto;
+      width: auto;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 8px 12px;
+    }
+
+    .window {
+      /* !important beats the inline width/top/left used for the desktop layout */
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      width: calc(100% - 24px) !important;
+      min-width: 0;
+      max-width: 600px;
+      margin: 0 auto 12px;
+    }
+
+    .title-bar { cursor: default; touch-action: auto; padding: 3px 3px 3px 4px; }
+
+    /* Bigger touch targets */
+    .win-btn { width: 24px; height: 22px; font-size: 12px; }
+
+    .window-content { height: auto !important; max-height: none; }
+
+    .status-panel {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #sand-canvas {
+      width: 100%;
+      height: auto;
+    }
   }
