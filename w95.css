@@ -196,6 +196,90 @@
 
 
 
+  /* ===== SAND GAME ===== */
+  .sand-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 4px;
+    border-bottom: 1px solid var(--win-border-dark);
+  }
+
+  .tool-group { display: flex; gap: 1px; }
+
+  .tool-btn {
+    font: inherit;
+    font-size: 11px;
+    color: #000;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    background: var(--btn-face);
+    border: 1px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+    box-shadow: inset -1px -1px 0 var(--win-border-dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .tool-btn.icon { width: 20px; padding: 0; }
+  .tool-btn svg { fill: currentColor; display: block; }
+  .tool-btn .dot { display: block; background: #000; border-radius: 50%; }
+  .tool-btn:focus-visible { outline: 1px dotted #000; outline-offset: -4px; }
+
+  /* Pressed / toggled-on, with the classic dithered face */
+  .tool-btn:active:not(:disabled),
+  .tool-btn.pressed {
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+    box-shadow: inset 1px 1px 0 var(--win-border-dark);
+    padding-top: 1px;
+  }
+  .tool-btn.pressed {
+    background-color: #dfdfdf;
+    background-image: repeating-conic-gradient(var(--btn-face) 0 25%, #fff 0 50%);
+    background-size: 2px 2px;
+  }
+
+  .tool-btn:disabled { color: var(--win-border-dark); cursor: default; }
+  .tool-btn:disabled svg { filter: drop-shadow(1px 1px 0 #fff); }
+
+  #sand-pause .ico-play { display: none; }
+  #sand-pause.pressed .ico-pause { display: none; }
+  #sand-pause.pressed .ico-play { display: block; }
+
+  #sand-clear { margin-left: auto; }
+
+  #sand-canvas {
+    display: block;
+    cursor: crosshair;
+    image-rendering: pixelated;
+    touch-action: none;
+  }
+
+  /* Wrapping grid so the palette grows with the material list */
+  .sand-palette {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: 4px;
+    border-top: 1px solid var(--win-border-light);
+  }
+
+  .swatch {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border: 1px solid;
+    border-color: var(--win-border-dark) var(--win-border-light) var(--win-border-light) var(--win-border-dark);
+    box-shadow: inset 1px 1px 0 var(--win-border-darker);
+    cursor: pointer;
+  }
+  .swatch.selected { outline: 2px solid #000080; outline-offset: 0; }
+  .swatch:focus-visible { outline: 1px dotted #000; outline-offset: 1px; }
+  .swatch.selected:focus-visible { outline: 2px solid #000080; }
+
   /* Profile photo placeholder */
   .profile-photo {
     width: 80px; height: 80px;
@@ -339,4 +423,10 @@
       width: 100%;
       height: auto;
     }
+
+    /* Bigger touch targets for the sand controls */
+    .tool-btn { height: 30px; min-width: 30px; font-size: 12px; }
+    .tool-btn.icon { width: 30px; }
+    .swatch { width: 30px; height: 30px; }
+    .sand-palette { gap: 4px; }
   }
